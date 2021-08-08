@@ -1,0 +1,112 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+.heading{
+    font-size: 2rem;
+}
+
+.buttons{
+    margin: auto;
+}
+
+.buttons .restart{
+    background-color: #cad5e3;
+    color: black;
+}
+
+.buttons .change_theme{
+    background-color: #469af4;
+}
+
+.game_board{
+    height: 362px;
+    width: 450px;
+    margin: auto;
+
+}
+
+.game_board .row .col{
+    height: 120px;
+    border: 1px solid black;
+    font-size: 60px;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.game_board .row .col:hover{
+    box-shadow: 0.5px 3px 8px #a1a1a1;
+}
+
+.game_board .row .col img{
+    height: 100px;
+    width: 100px;
+}
+
+
+
+/* Login and Register */
+
+    body{
+        background:#2598aad1;
+    }
+    a{
+        text-decoration:none !important;
+     }
+     h1,h2,h3{
+        font-family: 'Kaushan Script', cursive;
+     }
+    .box{
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 1rem;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 100%;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0,0,0,.2);
+        border-radius: 1.1rem;
+        outline: 0;
+        max-width: 500px;
+     }
+     .outerbox{
+         margin-top: 30px;
+     }
+     .tx-tfm{
+        text-transform:uppercase;
+     }
+     .mybtn{
+        border-radius:50px;
+     }
+    
+     .login-or {
+        position: relative;
+        color: #aaa;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+     }
+     .span-or {
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: -2px;
+        margin-left: -25px;
+        background-color: #fff;
+        width: 50px;
+        text-align: center;
+     }
+     
+     /* Dashboard **********/
+
+     .outerbox a:hover{
+        color: rgb(255, 117, 117);
+    }

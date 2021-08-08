@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+  <link rel="stylesheet" href="app.css">
+  <title>Insert data</title>
+  <script>var apr2020 = "apr2020", may2020 = "may2020", jun2020 = "jun2020", july2020 = "july2020", aug2020 = "aug2020", sep2020 = "sep2020", oct2020 = "oct2020", nov2020 = "nov2020",
+      dec2020 = "dec2020", jan2021 = "jan2021", feb2021 = "feb2021", march2021 = "march2021"</script>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</head>
+
+<body>
+
+  {{>navbar}}
+
+  {{#if err}}
+  <div class="alert alert-danger" role="alert">
+    {{err}}
+  </div>
+  {{/if}}
+
+
+  <form class="container register-form" action="/search_data" method="POST">
+    <div class="form">
+      <div class="note">
+        <p>Search Employee Data </p>
+      </div>
+
+      <div class="form-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" id="emp_id" class="form-control" placeholder="Employee ID *" name="emp_id" value="" />
+            </div>
+            <div class="form-group">
+              <select class="form-control" id="selectMonth" name="from_month">
+                <option>From Month</option>
+                <option value="apr2020">Apr 2020</option>
+                <option value="may2020">May 2020</option>
+                <option value="jun2020">Jun 2020</option>
+                <option value="july2020">July 2020</option>
+                <option value="aug2020">Aug 2020</option>
+                <option value="sep2020">Sep 2020</option>
+                <option value="oct2020">Oct2020</option>
+                <option value="nov2020">Nov 2020</option>
+                <option value="dec2020">Dec 2020</option>
+                <option value="jan2021">Jan 2021</option>
+                <option value="feb2021">Feb 2021</option>
+                <option value="march2021">March 2021</option>
+              </select>
+            </div>
+            &nbsp;
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="selectAll" value="" name="selectAll">
+              <label class="form-check-label" for="selectAll">Select All Employee</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Employee Name " name="emp_name" value="" />
+            </div>
+            <div class="form-group">
+              <select class="form-control" id="selectMonth" name="to_month">
+                <option>To Month</option>
+                <option value="apr2020">Apr 2020</option>
+                <option value="may2020">May 2020</option>
+                <option value="jun2020">Jun 2020</option>
+                <option value="july2020">July 2020</option>
+                <option value="aug2020">Aug 2020</option>
+                <option value="sep2020">Sep 2020</option>
+                <option value="oct2020">Oct2020</option>
+                <option value="nov2020">Nov 2020</option>
+                <option value="dec2020">Dec 2020</option>
+                <option value="jan2021">Jan 2021</option>
+                <option value="feb2021">Feb 2021</option>
+                <option value="march2021">March 2021</option>
+              </select>
+            </div>
+            &nbsp;
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Employee Age " name="emp_age" value="" />
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btnSubmit">Search</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="container">
+    <button type="button" class="btn btn-primary" id="switch_btn"
+      onclick="Switch(); showGraph([{{hrs}}],{{selected_months}});">Show Graph</button>
+    {{!-- <button type="button" class="btn btn-primary" id="switch_btn" onclick="switch()">Show Graph</button> --}}
+  </div>
+
+  <div class="container" id="table">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Emp ID</th>
+          <th scope="col">Emp Name</th>
+          <th scope="col">Emp Age</th>
+          <th scope="col">Emp Gender</th>
+          <th scope="col">Period</th>
+          <th scope="col">Total Working hrs</th>
+          <th scope="col">Total CTC</th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <th scope="row">{{emp_search_data.emp_id}}</th>
+          <th scope="row">{{emp_search_data.emp_name}}</th>
+          <th scope="row">{{emp_search_data.emp_age}}</th>
+          <th scope="row">{{emp_search_data.emp_gender}}</th>
+          <th scope="row">{{from_month}}-{{to_month}}{{year}}</th>
+          <th scope="row">{{hrs_search_data}}</th>
+          <th scope="row">{{ctc_search_data}}</th>
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  {{!-- Graph Code********************************************************* --}}
+  <div class="container" id="BarChart">
+    {{!-- <button type="button" class="btn btn-primary m-2" onclick="showGraph([{{hrs}}],{{selected_months}})">Show Bar
+      Graph</button> --}}
+    <div id="chartContainer" style="height: 500px; width: 90%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  </div>
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+
+  <script src="app.js">
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js" integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous"></script>
+    -->
+  <script>
+    var switch_btn = document.getElementById("switch_btn");
+    var table = document.getElementById("table");
+    var graph = document.getElementById("BarChart");
+    function Switch() {
+      if (switch_btn.innerHTML == "Show Graph") {
+        graph.style.display = "block";
+        table.style.display = "none";
+        switch_btn.innerHTML = "Show Table"
+      }
+      else if (switch_btn.innerHTML == "Show Table") {
+        graph.style.display = "none";
+        table.style.display = "block";
+        switch_btn.innerHTML = "Show Graph"
+      }
+    }
+
+
+    function showGraph(hrs, ...selected_months) {
+
+      var month_list = []
+      var i = 0;
+      for (let month of selected_months) {
+        month_list.push({ y: hrs[i], label: `${month}` })
+        i++;
+      }
+      console.log(month_list)
+      var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light1", // "light1", "light2", "dark1", "dark2"
+        title: {
+          text: "Working Hrs Per Month"
+        },
+        axisY: {
+          title: "Total Working Hrs"
+        },
+
+        data: [{
+          type: "column",
+          showInLegend: true,
+          legendMarkerColor: "grey",
+          legendText: "Months (Apr 2020 - March2021)",
+          dataPoints: month_list
+        }]
+      });
+      chart.render();
+    }
+
+
+
+  </script>
+</body>
+
+</html>

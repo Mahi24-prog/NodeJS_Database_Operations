@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="weather.css">
+  <script>var Clouds = "Clouds", Haze = "Haze", Drizzle = "Drizzle", Rain = "Rain", Clear = "Clear"
+  </script>
+  <title>Weather App</title>
+</head>
+
+<body>
+  <div class="container">
+    <form action="/weather" method="POST">
+      <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4" id="search">
+        <div class="input-group">
+          <input type="search" id="search_input" name="city" placeholder="Enter City Name" aria-describedby="button-addon1"
+            class="form-control border-0 bg-light">
+          <div class="btn">
+            <button type="submit" id="submit_btn" class="btn btn-link text-primary"><i
+                class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class='box'>
+    <div class='wave -one'></div>
+    <div class='wave -two'></div>
+    <div class='wave -three'></div>
+
+    {{#ifEquals status "Sunny"}}
+      <div class="weathercon" id="weathercon"><i class='fas fa-sun fa-2x' style='color: white;'></i></div>
+    {{/ifEquals}}
+    {{#ifEquals status "Clouds"}}
+      <div class="weathercon" id="weathercon"><i class='fas fa-cloud fa-2x' style='color: white;'></i></div>
+    {{/ifEquals}}
+    {{#ifEquals status "Rain"}}
+      <div class="weathercon" id="weathercon"><i class='fas fa-cloud-rain fa-2x' style='color: white;'></i></div>
+    {{/ifEquals}}
+    {{#ifEquals status "Drizzle"}}
+      <div class="weathercon" id="weathercon"><i class='fas fa-cloud-rain fa-2x' style='color: white;'></i></div>
+    {{/ifEquals}}
+    {{#ifEquals status "Haze"}}
+      <div class="weathercon" id="weathercon"><i class='fas fa-smog fa-2x' style='color: white;'></i></div>
+    {{/ifEquals}}
+    {{#ifEquals status "Clear"}}
+      <div class="weathercon" id="weathercon"><i class='fas fa-sun fa-2x' style='color: white;'></i></div>
+    {{/ifEquals}}
+
+    <div class="info">
+      <h2 class="location" id="location">{{city}},{{country}}</h2>
+      <p class="date" id="date">Day | Date | Time</p>
+      <h1 class="temp" id="temp">{{temp}} &deg;C</h1>
+      <p class="min_max">Min Temp:{{minTemp}} &nbsp; Max Temp:{{maxTemp}}</p>
+    </div>
+  </div>
+  <span>Enable location to see yours! :)</span>
+
+
+  <!-- Javascript-->
+  <script src="weather.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

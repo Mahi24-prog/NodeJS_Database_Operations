@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="app.css">
+    <title>Graph</title>
+</head>
+
+<body>
+    {{> navbar}}
+
+    <button type="button" class="btn btn-danger" onclick="showGraph({{hrs}})">Show Bar Graph</button>
+    
+
+    <div class="container">
+        <div id="chartContainer" style="height: 500px; width: 90%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ"
+        crossorigin="anonymous"></script>
+
+    <script>
+            function showGraph(...hrs) {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light1", // "light1", "light2", "dark1", "dark2"
+                title: {
+                    text: "All employee Data"
+                },
+                axisY: {
+                    title: "Total Working Hrs"
+                },
+                data: [{
+                    type: "column",
+                    showInLegend: true,
+                    legendMarkerColor: "grey",
+                    legendText: "Months (Apr 2020 - March2021)",
+                    dataPoints: [
+                        { y: hrs[0], label: "Apr2020" },
+                        { y: hrs[1], label: "May2020" },
+                        { y: hrs[2], label: "Jun2020" },
+                        { y: hrs[3], label: "July2020" },
+                        { y: hrs[4], label: "Aug2020" },
+                        { y: hrs[5], label: "Sep2020" },
+                        { y: hrs[6], label: "Oct2020" },
+                        { y: hrs[7], label: "Nov2020" },
+                        { y: hrs[8], label: "Dec2020" },
+                        { y: hrs[9], label: "Jan2021"},
+                        { y: hrs[10], label: "Feb2021"},
+                        { y: hrs[11], label: "March2021"}
+                    ]
+                }]
+            });
+            chart.render();
+
+        }
+    </script>
+
+</body>
+
+</html>
